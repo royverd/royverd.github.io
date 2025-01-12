@@ -1,10 +1,12 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #282c34;
+    background-image: url('https://i.giphy.com/XYEEvoX0Ub69ZgN9ai.webp');
+    background-size: 95%;  /* Adjusts the image to cover the entire VIEWPORT */
+    background-position: 100% 84%;  /* Ensures the image is centered */
     font-family: "Jersey 15", serif;
     font-size: 48px;
-    color:#78006c;
+    color: #78006c;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,6 +24,12 @@ button {
     transition: background-color 0.3s ease;
 }
 
+button:disabled {
+    background-color: #cccccc; /* Gray out the background */
+    color: #888888;  /* Gray out the text */
+    cursor: not-allowed;  /* Change the cursor to indicate the button is not clickable */
+}
+
 .popup {
     background-color: #fd87d5;
     border-radius: 10px;
@@ -36,6 +44,8 @@ button {
     flex-direction: column;
     justify-content: flex-start; /* Align content at the top */
     align-items: center;         /* Center horizontally */
+
+    overflow: auto;  /* Adds scrolling if content exceeds max-height */
 }
 
 .button-container {
@@ -44,15 +54,32 @@ button {
     margin-top: 20px; /* Space between question and buttons */
 }
 
-button:disabled {
-    background-color: #cccccc; /* Gray out the background */
-    color: #888888;  /* Gray out the text */
-    cursor: not-allowed;  /* Change the cursor to indicate the button is not clickable */
+/* Optional overlay for transparency */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 1;  /* Ensures overlay is on top of the video */
+}
+
+.content {
+    opacity: 0.9;  /* Everything inside the content will be at 90% opacity */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: auto;
 }
 
 .hidden {
     display: none;
 }
+
 
 #question {
     margin-top: -10px;
@@ -61,12 +88,12 @@ button:disabled {
 
 #yesBtn {
     font-family: "Lilita One", serif;
-    background-color: #4CAF50;
+    background-color: #39bd3e;
     color: white;
 }
 
 #yesBtn:hover {
-    background-color: #6ef875;
+    background-color: #72f678;
 }
 
 #noBtn {
@@ -88,6 +115,20 @@ button:disabled {
     background-color: #cccccc;  /* Ensure this applies specifically for the no button */
     color: #888888;
 }
+
+/* Ensuring the video background stays behind */
+#youtube-audio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;  /* Video will be behind the content */
+    width: 1px;  /* Keep it small to not show on screen */
+    height: 1px;
+    visibility: hidden;  /* Keeps the audio playing but hides the iframe */
+}
+
+
+
 /* Fonts */
 
 .jersey-15-regular {
@@ -104,8 +145,8 @@ button:disabled {
 
 /* Iteration classes */
 
-.iteration1 #yesBtn {
-
+.iteration5 #yesBtn {
+    background-color: #ac4942;
 }
 
 .iteration1 button {

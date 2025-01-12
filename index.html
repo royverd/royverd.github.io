@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!--  -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"> <!-- Defines Character Encoding -->
@@ -10,14 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Lilita+One&display=swap" rel="stylesheet"> <!-- Font-->
 </head>
 <body>
-    <div id="popup" class="popup">
-        <p id="question"></p>
-        <div class="button-container">
-            <button id="yesBtn">Yes</button>
-            <button id="noBtn">No</button>
+    <!-- Background YouTube Audio (Invisible) -->
+    <iframe 
+        id="youtube-audio" 
+        src="https://www.youtube.com/embed/UEUrp-lE_w4?autoplay=1&loop=1&playlist=UEUrp-lE_w4" 
+        frameborder="0" 
+        allow="autoplay; fullscreen" 
+        allowfullscreen
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+    </iframe>
+    
+    <div class="content">
+        <div id="popup" class="popup">
+            <p id="question"></p>
+            <div class="button-container">
+                <button id="yesBtn">Yes</button>
+                <button id="noBtn">No</button>
+            </div>
         </div>
     </div>
-
     <script src="script.js" defer></script>
 </body>
 </html>
+

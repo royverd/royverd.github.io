@@ -3,12 +3,10 @@ const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const popup = document.getElementById('popup');
 
-let noClickCount = 0;
-let yesClicked = false;
 
 let questions = [
     "Will you go out with me? •ᴗ•",
-    "Are you sure you don't want to go out with me?",
+    "Are you suuure???",
     "Really? Not even a little date?",
     "Come on, give me a chance!",
     "Please? Pretty please?",
@@ -21,14 +19,16 @@ let questions = [
     "Porfavor?💃",
     "Don't Make me beg for it! (I will)",
     "Ohhh, come ooon... think about it?",
-    "For the love of god just say yes...",
+    "Say yes or I'll just keep asking...",
 
 ];
 
-
+let noClickCount = 0;
+let yesClicked = false;
+let isSwapped = false;  // Track if the buttons are currently swapped
 let distanceMultiplier = 1;  // Initially, the popup will move 1x distance
 let maxDistance = 1; // Limit the multiplier to 100% of the window's width/height
-let remainingQuestions = [...questions.slice(0, questions.length - 1)];  // The remaining questions after the first one
+let remainingQuestions = [...questions.slice(1, questions.length - 1)];  // The remaining questions after the first one
 let colorsSwapped = false;  // Track if the colors have been swapped
 let isTyping = false;  // Flag to track typing status
 
@@ -126,13 +126,31 @@ noBtn.addEventListener('click', () => {
     showQuestion();
     movePopup();
 
-    // Apply iteration-specific class to the body or wrapper
-    document.body.className = `iteration${noClickCount}`;
+    // Swap buttons on every 3rd click (3, 6, 9, ...)
+    if ((noClickCount % 3 === 0) || (isSwapped)) {
+        swapButtonPosition();
+    }
 
+    document.body.className = `iteration${noClickCount}`;
     distanceMultiplier += 0.05;
 });
 
 window.onload = showQuestion;
+
+
+function swapButtonPosition() {
+    const buttonContainer = document.querySelector('.button-container');
+    
+    if (isSwapped) {
+        // Swap back to the original position
+        buttonContainer.insertBefore(yesBtn, noBtn);
+    } else {
+        // Swap positions
+        buttonContainer.insertBefore(noBtn, yesBtn);
+    }
+
+    isSwapped = !isSwapped;  // Toggle the swap state
+}
 
 function sendResponse(response) {
     fetch('backend.php', {
