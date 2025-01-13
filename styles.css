@@ -1,3 +1,10 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -10,7 +17,7 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
     transition: filter 1s ease;  /* Add transition for hue change */
 }
@@ -439,18 +446,13 @@ button:disabled:hover {
 
 .iteration-final .popup {
     position: absolute;
-    /* No Background
-    background-image: url("https://i.giphy.com/EoW3jhM6MzsONM15zm.webp");
-    */
-
-    /* Full height */
+    top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100%;
-    /* Other Properties*/
+    background-size: cover; /* Use 'cover' to ensure the image spans the viewport without leaving gaps */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
