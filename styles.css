@@ -1,17 +1,37 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('https://i.giphy.com/XYEEvoX0Ub69ZgN9ai.webp');
-    background-size: 95%;  /* Adjusts the image to cover the entire VIEWPORT */
-    background-position: 100% 84%;  /* Ensures the image is centered */
+    background-size: 95%;
+    background-position: 100% 84%;
     font-family: "Jersey 15", serif;
     font-size: 48px;
     color: #78006c;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     height: 100vh;
     overflow: hidden;
+    transition: filter 1s ease;  /* Add transition for hue change */
+}
+
+.bg-image {
+    position: absolute;
+    /* The image used */
+    background-image: url("https://i.giphy.com/XYEEvoX0Ub69ZgN9ai.webp");
+  
+    /* Add the blur effect */
+    filter: blur(24px);
+    -webkit-filter: blur(24px);
+  
+    /* Full height */
+    height: 100%;
+    width: 100%;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 button {
@@ -21,31 +41,76 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for background and scale */
 }
 
 button:disabled {
-    background-color: #cccccc; /* Gray out the background */
+    background-color: #ff7be7; /* Gray out the background */
     color: #888888;  /* Gray out the text */
     cursor: not-allowed;  /* Change the cursor to indicate the button is not clickable */
 }
 
+button:hover {
+    transform: scale(1.1); /* Slightly enlarges the button on hover */
+    background-color: #00000082;  /* Lighter background on hover */
+    box-shadow: 0 0 10px 3px #ffffffbf, 0 0 50px 1px #ffffffbf;  /* Glow effect */
+    text-shadow: 0 0 10px #00000082, 0 0 5px #00000082;  /* Glowing text */
+}
+
+button:active {
+    background-color: #78006c;
+    box-shadow: 0 0 20px 5px #fd87d5, 0 0 25px 10px #78006c;  /* Stronger glow on click */
+    text-shadow: 0 0 15px #fd87d5, 0 0 25px #78006c;
+}
 .popup {
-    background-color: #fd87d5;
+    background-image: linear-gradient(to bottom right, #ffffff, #ff00ff);
     border-radius: 10px;
-    box-shadow: -15px 15px 50px 15px rgba(0, 0, 0, 0.484);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(255, 0, 255, 0.5); /* Adds glowing neon effect */
     padding: 50px 20px 20px 20px;
     text-align: center;
     position: absolute;
     width: 750px;
     height: 220px;
-
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align content at the top */
-    align-items: center;         /* Center horizontally */
+    justify-content: flex-start;
+    align-items: center;
+    overflow: auto;
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards;
+}
 
-    overflow: auto;  /* Adds scrolling if content exceeds max-height */
+
+
+.spinner {
+    border: 4px solid #f3f3f3; /* Light gray background */
+    border-top: 4px solid #78006c; /* Purple color for the spinner */
+    border-radius: 50%; /* Ensures the spinner is round */
+    width: 50px; 
+    height: 50px; /* Ensures height equals width for a perfect circle */
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+    z-index: 999; /* Make sure it's above other elements */
+    display: inline-block; /* Ensures proper display */
+}
+
+
+/* Rotate animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+@keyframes fadeInUp { /*Sequence of style changes that can be applied over time, creating animations*/
+    0% {
+        opacity: 0;
+        transform: translateY(50px); /* Start from below */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* End at the normal position */
+    }
 }
 
 .button-container {
@@ -54,15 +119,37 @@ button:disabled {
     margin-top: 20px; /* Space between question and buttons */
 }
 
-/* Optional overlay for transparency */
-.video-overlay {
+/* Volume Control Styling */
+.volume-container {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    z-index: 1;  /* Ensures overlay is on top of the video */
+    bottom: 80px;
+    left: 20px;
+    z-index: 3;
+}
+
+#volumeSlider {
+    width: 200px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s ease;
+}
+
+#volumeSlider:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+#volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #78006c;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .content {
@@ -76,21 +163,21 @@ button:disabled {
     overflow: auto;
 }
 
-.mute-button {
+/* .mute-button {
     position: fixed;
     bottom: 20px;
     left: 20px;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    z-index: 2; /* Ensure button is on top of everything */
+    z-index: 2; Ensure button is on top of everything 
 }
 
 .mute-button img {
     width: 50px;
     height: 50px;
-}
-
+} 
+*/
 .hidden {
     display: none;
 }

@@ -89,6 +89,18 @@ function showQuestion() {
     }
 }
 
+function typeWriter(text, i = 0) {
+        //document.getElementById('spinner').classList.remove('hidden'); // Show spinner when typing starts
+    if (i < text.length) {
+        questionElement.innerHTML += text.charAt(i);
+        setTimeout(() => typeWriter(text, i + 1), 50);
+    } else {
+        isTyping = false;
+        yesBtn.disabled = false;
+        noBtn.disabled = false;
+        //document.getElementById('spinner').classList.add('hidden'); // Hide spinner once typing is done
+    }
+}
 
 function movePopup() {
 
@@ -152,6 +164,11 @@ function swapButtonPosition() {
     isSwapped = !isSwapped;  // Toggle the swap state
 }
 
+function showPopup() {
+    const popup = document.getElementById('popup');
+    popup.classList.add('popup-animation');
+}
+
 function sendResponse(response) {
     fetch('backend.php', {
         method: 'POST',
@@ -173,6 +190,20 @@ function sendResponse(response) {
         console.error('Error:', error);  // Logs any errors during the fetch
     });
 }
+
+/* Volume Slider (NOT IMPLEMENTED)
+// Get the volume slider element
+const volumeSlider = document.getElementById('volumeSlider');
+
+// Function to update the volume based on the slider value
+volumeSlider.addEventListener('input', function() {
+    const volume = volumeSlider.value;  // Get the slider value (0 to 100)
+    const volumePercentage = volume / 100;  // Convert to percentage
+    if (player) {
+        player.setVolume(volume);  // Set volume in the YouTube player
+    }
+});
+*/
 
 /* Failed Attempt at Youtube Audio Handling
 // Variables
