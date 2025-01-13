@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> <!-- Defines Character Encoding -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Force Up-to-date Rendering -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Provides Diffently-Sized Device Compatibility -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inevitable Encounter</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet"> <!-- Font-->
-    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Lilita+One&display=swap" rel="stylesheet"> <!-- Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Lilita+One&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Include the YouTube Iframe API script -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <!-- HTML container for the YouTube player -->
+    <div id="player"></div>
+
     <!-- Background YouTube Audio (Invisible) -->
     <iframe 
         id="youtube-audio" 
-        src="https://www.youtube.com/embed/UEUrp-lE_w4?autoplay=1&loop=1&playlist=UEUrp-lE_w4" 
+        src="https://www.youtube.com/embed/UEUrp-lE_w4?autoplay=1&loop=1&playlist=UEUrp-lE_w4"
         frameborder="0" 
         allow="autoplay; fullscreen" 
         allowfullscreen
@@ -26,10 +32,15 @@
             <div class="button-container">
                 <button id="yesBtn">Yes</button>
                 <button id="noBtn">No</button>
+                <button id="muteBtn" class="mute-button"> 
+                    <img id="muteIcon" src="https://img.icons8.com/ios-filled/50/000000/volume-mute.png" alt="Mute">
+                </button>
             </div>
         </div>
     </div>
+
     <script src="script.js" defer></script>
 </body>
 </html>
+
 

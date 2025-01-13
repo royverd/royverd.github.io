@@ -2,6 +2,7 @@ const questionElement = document.getElementById('question');
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const popup = document.getElementById('popup');
+const bvid = document.getElementById('youtube-audio');
 
 
 let questions = [
@@ -22,6 +23,7 @@ let questions = [
     "Say yes or I'll just keep asking...",
 
 ];
+
 
 let noClickCount = 0;
 let yesClicked = false;
@@ -135,8 +137,6 @@ noBtn.addEventListener('click', () => {
     distanceMultiplier += 0.05;
 });
 
-window.onload = showQuestion;
-
 
 function swapButtonPosition() {
     const buttonContainer = document.querySelector('.button-container');
@@ -173,3 +173,30 @@ function sendResponse(response) {
         console.error('Error:', error);  // Logs any errors during the fetch
     });
 }
+
+/* Failed Attempt at Youtube Audio Handling
+// Variables
+var player;
+
+ YouTube API callback function
+function onYouTubeIframeAPIReady() {
+  // Create the YouTube player
+  player = new YT.Player('player', {
+    height: '360',
+    width: '640',
+    videoId: 'youtube-audio',
+    events: {
+      'onReady': onPlayerReady
+    }
+  });
+} 
+
+// Function called when the player is ready
+function onPlayerReady(event) {
+  // You can set the initial volume here if needed
+  event.target.setVolume(0.5);
+}*/
+
+window.onload = function() {
+    showQuestion();
+} 
