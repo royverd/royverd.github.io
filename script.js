@@ -191,36 +191,28 @@ function typeWriter(text, i = 0) {
 
 /**Adjusts the position of the popup class element */
 function movePopup() {
-    const margin = 100;  // The margin around the viewport (in pixels)
     const centerX = window.innerWidth / 2 - popup.offsetWidth / 2;
     const centerY = window.innerHeight / 2 - popup.offsetHeight / 2;
 
-    // Adjust the available space by subtracting the margin
-    const availableWidth = window.innerWidth - 2 * margin;
-    const availableHeight = window.innerHeight - 2 * margin;
-
     if (yesClicked || noClickCount > questions.length - 3) {
-        // Set the popup to the exact center of the screen, considering the margin
-        popup.style.left = `${Math.max(margin, Math.min(centerX, window.innerWidth - popup.offsetWidth - margin))}px`;
-        popup.style.top = `${Math.max(margin, Math.min(centerY, window.innerHeight - popup.offsetHeight - margin))}px`;
-
-        if (noClickCount < 24) {  // Limit to 10 clicks (max scale)
-            popup.style.transform = `scale(${1 + noClickCount * 0.1})`;
-        }
+        // Set the popup to the exact center of the screen
+        popup.style.left = `${Math.max(0, Math.min(centerX, window.innerWidth - popup.offsetWidth))}px`;
+        popup.style.top = `${Math.max(0, Math.min(centerY, window.innerHeight - popup.offsetHeight))}px`;
 
     } else if (noClickCount > 2) {
         // The random offsets from the center, multiplied by the distance multiplier
-        const maxXOffset = (availableWidth - popup.offsetWidth) / 2 * distanceMultiplier;
-        const maxYOffset = (availableHeight - popup.offsetHeight) / 2 * distanceMultiplier;
+        const maxXOffset = (window.innerWidth - popup.offsetWidth) / 2 * distanceMultiplier;
+        const maxYOffset = (window.innerHeight - popup.offsetHeight) / 2 * distanceMultiplier;
 
         const x = centerX + (Math.random() - 0.5) * 2 * maxXOffset;
         const y = centerY + (Math.random() - 0.5) * 2 * maxYOffset;
 
-        // Constrain the popup within the window boundaries and respect the margin
-        popup.style.left = `${Math.max(margin, Math.min(x, window.innerWidth - popup.offsetWidth - margin))}px`;
-        popup.style.top = `${Math.max(margin, Math.min(y, window.innerHeight - popup.offsetHeight - margin))}px`;
+        // Constrain the popup within the window boundaries
+        popup.style.left = `${Math.max(0, Math.min(x, window.innerWidth - popup.offsetWidth))}px`;
+        popup.style.top = `${Math.max(0, Math.min(y, window.innerHeight - popup.offsetHeight))}px`;
     }
 }
+
 
 
 /**Simply swaps the yes and no buttons positions */
