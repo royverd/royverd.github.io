@@ -10,6 +10,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Lilita+One&display=swap" rel="stylesheet">
 </head>
 <body>
+    <audio id="typingSound" controls>
+        <source src="sounds/typing-sound-50.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="bg-audio" loop preload="auto" controls>
+        <source src="sounds/bg-audio.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="ms-click" controls>
+        <source src="sounds/msclick.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
     <div class="bg-image"></div>
     <!-- Include the YouTube Iframe API script -->
     <script src="https://www.youtube.com/iframe_api"></script>
@@ -17,15 +32,15 @@
     <!-- HTML container for the YouTube player -->
     <div id="player"></div>
 
-    <!-- Background YouTube Audio (Invisible) -->
+    <!-- Background YouTube Audio (Invisible) 
     <iframe 
         id="youtube-audio" 
-        src="https://www.youtube.com/embed/UEUrp-lE_w4?autoplay=1&loop=1&playlist=UEUrp-lE_w4"
+        src="https://www.youtube.com/embed/UEUrp-lE_w4?autoplay=0&loop=1&playlist=UEUrp-lE_w4"
         frameborder="0" 
         allow="autoplay; fullscreen" 
         allowfullscreen
         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
-    </iframe>
+    </iframe> -->
     <div class="content">
         <div id="popup" class="popup">
             <!--<div class="spinner"></div>-->
