@@ -74,6 +74,7 @@ audio {
 }
 
 .content {
+    position: absolute;
     opacity: 0.9;  /* Everything inside the content will be at 90% opacity */
     width: 100%;
     height: 100%;
